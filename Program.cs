@@ -21,27 +21,27 @@ using BenchmarkDotNet.Running;
 #endregion
 
 #region 2.Abfrage
-public class Program
-{
+// public class Program
+// {
 
-    private static void Main(string[] args)
-    {
-        Stopwatch sw = new Stopwatch();
-        sw.Start();
-        System.Console.WriteLine("Der Vorgang wurde ausgeführt");
-        AdventureWorks2019Context? kontext = new AdventureWorks2019Context();
-        var produkte = kontext?.Products?.AsParallel().Where(p => p.ListPrice > 10M).Take(20).ToList();
+//     private static void Main(string[] args)
+//     {
+//         Stopwatch sw = new Stopwatch();
+//         sw.Start();
+//         System.Console.WriteLine("Der Vorgang wurde ausgeführt");
+//         AdventureWorks2019Context? kontext = new AdventureWorks2019Context();
+//         var produkte = kontext?.Products?.AsParallel().Where(p => p.ListPrice > 10M).Take(20).ToList();
 
-        ConsoleTable table = new ConsoleTable("Name", "List Price");
-        produkte?.ForEach(p =>
-        {
-            table.AddRow(p.Name, p.ListPrice);
-        });
-        table.Write(Format.Alternative);
-        sw.Stop();
-        System.Console.WriteLine($"Der Vorgang wurde in {sw.ElapsedMilliseconds} Millisekunden beendet");
-    }
-}
+//         ConsoleTable table = new ConsoleTable("Name", "List Price");
+//         produkte?.ForEach(p =>
+//         {
+//             table.AddRow(p.Name, p.ListPrice);
+//         });
+//         table.Write(Format.Alternative);
+//         sw.Stop();
+//         System.Console.WriteLine($"Der Vorgang wurde in {sw.ElapsedMilliseconds} Millisekunden beendet");
+//     }
+// }
 #endregion
 
 #region Benchmark 
@@ -109,4 +109,42 @@ public class Program
 
 //     }
 // }
+#endregion
+
+#region IP Finder
+using System;
+using System.Net;
+
+namespace ConsoleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Geben Sie den Domänennamen ein: ");
+            var domain = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(domain))
+            {
+                var ipAddresses = Dns.GetHostAddresses(domain);
+
+                ipAddresses.ToList().ForEach(ip =>
+                {
+                    {
+                        Console.WriteLine(ip);
+                    }
+                });
+
+            }
+            else
+            {
+                Console.WriteLine("Der Domänenname darf nicht leer sein.");
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
+
+
 #endregion
