@@ -112,39 +112,65 @@ using BenchmarkDotNet.Running;
 #endregion
 
 #region IP Finder
+// using System;
+// using System.Net;
+
+// namespace ConsoleApp
+// {
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             Console.Write("Geben Sie den Domänennamen ein: ");
+//             var domain = Console.ReadLine();
+
+//             if (!string.IsNullOrEmpty(domain))
+//             {
+//                 var ipAddresses = Dns.GetHostAddresses(domain);
+
+//                 ipAddresses.ToList().ForEach(ip =>
+//                 {
+//                     {
+//                         Console.WriteLine(ip);
+//                     }
+//                 });
+
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Der Domänenname darf nicht leer sein.");
+//             }
+
+//             Console.ReadKey();
+//         }
+//     }
+// }
+#endregion
+
+#region Mit Netzwerk-Schnittstelle  IP-Adressen auflisten
 using System;
 using System.Net;
-
-namespace ConsoleApp
+using System.Net.NetworkInformation;
+ class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
+         foreach (NetworkInterface ni in interfaces)
         {
-            Console.Write("Geben Sie den Domänennamen ein: ");
-            var domain = Console.ReadLine();
-
-            if (!string.IsNullOrEmpty(domain))
+            Console.WriteLine("Name: {0}", ni.Name);
+            Console.WriteLine("Beschreibung: {0}", ni.Description);
+            Console.WriteLine("Status: {0}", ni.OperationalStatus);
+            Console.WriteLine("MAC-Adresse: {0}", ni.GetPhysicalAddress().ToString());
+             IPInterfaceProperties ipProps = ni.GetIPProperties();
+            foreach (UnicastIPAddressInformation addr in ipProps.UnicastAddresses)
             {
-                var ipAddresses = Dns.GetHostAddresses(domain);
-
-                ipAddresses.ToList().ForEach(ip =>
-                {
-                    {
-                        Console.WriteLine(ip);
-                    }
-                });
-
+                Console.WriteLine("IP-Adresse: {0}", addr.Address.ToString());
+                Console.WriteLine("Subnetzmaske: {0}", addr.IPv4Mask.ToString());
+                Console.WriteLine();
             }
-            else
-            {
-                Console.WriteLine("Der Domänenname darf nicht leer sein.");
-            }
-
-            Console.ReadKey();
+             Console.WriteLine();
         }
     }
 }
-
-
 #endregion
