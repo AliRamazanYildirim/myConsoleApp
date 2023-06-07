@@ -169,22 +169,60 @@
 #endregion
 
 #region Pdf Erstellen
-using PdfSharp.Pdf;
-using PdfSharp.Drawing;
-using System.Text;
+// using PdfSharp.Pdf;
+// using PdfSharp.Drawing;
+// using System.Text;
 
-Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-Encoding utf8 = Encoding.GetEncoding("UTF-8");
+// Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+// Encoding utf8 = Encoding.GetEncoding("UTF-8");
 
-PdfDocument pdf = new PdfDocument();
-pdf.Info.Title = "Meine erste PDF";
-PdfPage pdfPage = pdf.AddPage();
-XGraphics graph = XGraphics.FromPdfPage(pdfPage);
-XFont font = new XFont("Verdana", 20, XFontStyle.Regular);
-graph.DrawString("Hallo Welt!", font, XBrushes.Black,
-new XRect(0, 0, pdfPage.Width.Point, pdfPage.Height.Point),
-XStringFormats.Center);
-string pdfFilename = "meineerstePDF.pdf";
-pdf.Save(pdfFilename);
+// PdfDocument pdf = new PdfDocument();
+// pdf.Info.Title = "Meine erste PDF";
+// PdfPage pdfPage = pdf.AddPage();
+// XGraphics graph = XGraphics.FromPdfPage(pdfPage);
+// XFont font = new XFont("Verdana", 20, XFontStyle.Regular);
+// graph.DrawString("Hallo Welt!", font, XBrushes.Black,
+// new XRect(0, 0, pdfPage.Width.Point, pdfPage.Height.Point),
+// XStringFormats.Center);
+// string pdfFilename = "meineerstePDF.pdf";
+// pdf.Save(pdfFilename);
+
+#endregion
+
+#region Pdf-Konvertierung
+
+using System.IO;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+
+namespace TextToPdf
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Create a new PDF document
+            string fileName = "output_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf";
+            PdfDocument pdf = new PdfDocument(new PdfWriter(fileName));
+            Document doc = new Document(pdf);
+
+            // Read the text file line by line
+            using (StreamReader sr = new StreamReader("datei.txt"))
+            {
+                string? line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    // Add each line to the PDF document
+                    Paragraph para = new Paragraph(line);
+                    doc.Add(para);
+                }
+            }
+
+            // Close the document
+            doc.Close();
+        }
+    }
+}
 
 #endregion
