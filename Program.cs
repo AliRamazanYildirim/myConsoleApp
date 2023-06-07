@@ -1,11 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using myConsoleApp.Models;
-using ConsoleTables;
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
-
-#region  1.Abfrage
+﻿#region  1.Abfrage
 // internal class NewBaseType
 // {
 //     private static void Main(string[] args)
@@ -47,7 +40,7 @@ using BenchmarkDotNet.Running;
 #region Benchmark 
 // public class BenchmarkExample
 // {
-    
+
 //     [Benchmark]
 //     public void MathPow()
 //     {
@@ -148,29 +141,50 @@ using BenchmarkDotNet.Running;
 #endregion
 
 #region Mit Netzwerk-Schnittstelle  IP-Adressen auflisten
-using System;
-using System.Net;
-using System.Net.NetworkInformation;
- class Program
-{
-    static void Main(string[] args)
-    {
-        NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
-         foreach (NetworkInterface ni in interfaces)
-        {
-            Console.WriteLine("Name: {0}", ni.Name);
-            Console.WriteLine("Beschreibung: {0}", ni.Description);
-            Console.WriteLine("Status: {0}", ni.OperationalStatus);
-            Console.WriteLine("MAC-Adresse: {0}", ni.GetPhysicalAddress().ToString());
-             IPInterfaceProperties ipProps = ni.GetIPProperties();
-            foreach (UnicastIPAddressInformation addr in ipProps.UnicastAddresses)
-            {
-                Console.WriteLine("IP-Adresse: {0}", addr.Address.ToString());
-                Console.WriteLine("Subnetzmaske: {0}", addr.IPv4Mask.ToString());
-                Console.WriteLine();
-            }
-             Console.WriteLine();
-        }
-    }
-}
+// using System;
+// using System.Net;
+// using System.Net.NetworkInformation;
+//  class Program
+// {
+//     static void Main(string[] args)
+//     {
+//         NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
+//          foreach (NetworkInterface ni in interfaces)
+//         {
+//             Console.WriteLine("Name: {0}", ni.Name);
+//             Console.WriteLine("Beschreibung: {0}", ni.Description);
+//             Console.WriteLine("Status: {0}", ni.OperationalStatus);
+//             Console.WriteLine("MAC-Adresse: {0}", ni.GetPhysicalAddress().ToString());
+//              IPInterfaceProperties ipProps = ni.GetIPProperties();
+//             foreach (UnicastIPAddressInformation addr in ipProps.UnicastAddresses)
+//             {
+//                 Console.WriteLine("IP-Adresse: {0}", addr.Address.ToString());
+//                 Console.WriteLine("Subnetzmaske: {0}", addr.IPv4Mask.ToString());
+//                 Console.WriteLine();
+//             }
+//              Console.WriteLine();
+//         }
+//     }
+// }
+#endregion
+
+#region Pdf Erstellen
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using System.Text;
+
+Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+Encoding utf8 = Encoding.GetEncoding("UTF-8");
+
+PdfDocument pdf = new PdfDocument();
+pdf.Info.Title = "Meine erste PDF";
+PdfPage pdfPage = pdf.AddPage();
+XGraphics graph = XGraphics.FromPdfPage(pdfPage);
+XFont font = new XFont("Verdana", 20, XFontStyle.Regular);
+graph.DrawString("Hallo Welt!", font, XBrushes.Black,
+new XRect(0, 0, pdfPage.Width.Point, pdfPage.Height.Point),
+XStringFormats.Center);
+string pdfFilename = "meineerstePDF.pdf";
+pdf.Save(pdfFilename);
+
 #endregion
