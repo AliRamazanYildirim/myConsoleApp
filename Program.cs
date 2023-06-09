@@ -191,38 +191,85 @@
 
 #region Pdf-Konvertierung
 
-using System.IO;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
+// using System.IO;
+// using iText.Kernel.Pdf;
+// using iText.Layout;
+// using iText.Layout.Element;
 
-namespace TextToPdf
+// namespace TextToPdf
+// {
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             // Create a new PDF document
+//             string fileName = "output_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf";
+//             PdfDocument pdf = new PdfDocument(new PdfWriter(fileName));
+//             Document doc = new Document(pdf);
+
+//             // Read the text file line by line
+//             using (StreamReader sr = new StreamReader("datei.txt"))
+//             {
+//                 string? line;
+//                 while ((line = sr.ReadLine()) != null)
+//                 {
+//                     // Add each line to the PDF document
+//                     Paragraph para = new Paragraph(line);
+//                     doc.Add(para);
+//                 }
+//             }
+
+//             // Close the document
+//             doc.Close();
+//         }
+//     }
+// }
+
+#endregion
+
+#region IP Filter
+
+// using System.Net;
+
+// IPAddress ipAddress = IPAddress.Parse("::1");
+// if (IPAddress.IsLoopback(ipAddress))
+// {
+//     Console.WriteLine("Die IP-Adresse ist eine Loopback-Adresse.");
+// }
+// else
+// {
+//     Console.WriteLine("Die IP-Adresse ist nicht eine Loopback-Adresse.");
+// }
+
+#endregion
+
+#region Verwaltung von IP-Adressen
+using System.Net;
+using System.Net.Sockets;
+
+namespace RemoteAccess
 {
     class Program
     {
-        static void Main(string[] args)
+        static  void Main(string[] args)
         {
-            // Create a new PDF document
-            string fileName = "output_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf";
-            PdfDocument pdf = new PdfDocument(new PdfWriter(fileName));
-            Document doc = new Document(pdf);
+            // IP-Adresse, zu der eine Verbindung hergestellt werden soll
+            string ipAddress = "2011:c7:9f16:9864:4447:df91:46be:39af";
 
-            // Read the text file line by line
-            using (StreamReader sr = new StreamReader("datei.txt"))
+            try
             {
-                string? line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    // Add each line to the PDF document
-                    Paragraph para = new Paragraph(line);
-                    doc.Add(para);
-                }
-            }
+                TcpClient client = new TcpClient();
+                client.ConnectAsync(ipAddress, 80);
 
-            // Close the document
-            doc.Close();
+                Console.WriteLine("Erlaubte IP-Adresse: " + ipAddress);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+   
+            Console.ReadLine();
         }
     }
 }
-
 #endregion
