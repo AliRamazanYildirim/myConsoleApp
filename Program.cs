@@ -244,32 +244,61 @@
 #endregion
 
 #region Verwaltung von IP-Adressen
-using System.Net;
-using System.Net.Sockets;
+// using System.Net;
+// using System.Net.Sockets;
 
-namespace RemoteAccess
-{
-    class Program
-    {
-        static  void Main(string[] args)
-        {
-            // IP-Adresse, zu der eine Verbindung hergestellt werden soll
-            string ipAddress = "2011:c7:9f16:9864:4447:df91:46be:39af";
+// namespace RemoteAccess
+// {
+//     class Program
+//     {
+//         static  void Main(string[] args)
+//         {
+//             // IP-Adresse, zu der eine Verbindung hergestellt werden soll
+//             string ipAddress = "2011:c7:9f16:9864:4447:df91:46be:39af";
 
-            try
-            {
-                TcpClient client = new TcpClient();
-                client.ConnectAsync(ipAddress, 80);
+//             try
+//             {
+//                 TcpClient client = new TcpClient();
+//                 client.ConnectAsync(ipAddress, 80);
 
-                Console.WriteLine("Erlaubte IP-Adresse: " + ipAddress);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+//                 Console.WriteLine("Erlaubte IP-Adresse: " + ipAddress);
+//             }
+//             catch (Exception ex)
+//             {
+//                 Console.WriteLine(ex.Message);
+//             }
    
-            Console.ReadLine();
-        }
+//             Console.ReadLine();
+//         }
+//     }
+// }
+#endregion
+
+#region Ref Person
+class Person
+{
+    public string? Name { get; set; }
+    public int Alter { get; set; }
+
+    public void ChangePerson(ref Person person, string neuerName, int neuesAlter)
+    {
+        person.Name = neuerName;
+        person.Alter = neuesAlter;
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        Person ali = new Person();
+        ali.Name = "Ali";
+        ali.Alter = 25;
+
+        Console.WriteLine($"Bevor: Name = {ali.Name}, Alter = {ali.Alter}");
+
+        ali.ChangePerson(ref ali, "Ramazan", 30);
+
+        Console.WriteLine($"Danach: Name = {ali.Name}, Alter = {ali.Alter}");
     }
 }
 #endregion
