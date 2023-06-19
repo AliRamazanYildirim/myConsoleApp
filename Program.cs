@@ -290,6 +290,11 @@ class Program
 {
     static void Main(string[] args)
     {
+        int ersterWert, zweiterWert;
+
+        GetValues(out ersterWert, out zweiterWert);
+        Console.WriteLine($"Erster Wert: {ersterWert}, Zweiter Wert: {zweiterWert}");
+        
         Person ali = new Person();
         ali.Name = "Ali";
         ali.Alter = 25;
@@ -299,6 +304,12 @@ class Program
         ali.ChangePerson(ref ali, "Ramazan", 30);
 
         Console.WriteLine($"Danach: Name = {ali.Name}, Alter = {ali.Alter}");
+    }
+
+    public static void GetValues(out int wert1, out int wert2)
+    {
+        wert1 = 10;
+        wert2 = 20;
     }
 }
 #endregion
