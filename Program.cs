@@ -267,7 +267,7 @@
 //             {
 //                 Console.WriteLine(ex.Message);
 //             }
-   
+
 //             Console.ReadLine();
 //         }
 //     }
@@ -275,41 +275,57 @@
 #endregion
 
 #region Ref Person
-class Person
-{
-    public string? Name { get; set; }
-    public int Alter { get; set; }
+// class Person
+// {
+//     public string? Name { get; set; }
+//     public int Alter { get; set; }
 
-    public void ChangePerson(ref Person person, string neuerName, int neuesAlter)
-    {
-        person.Name = neuerName;
-        person.Alter = neuesAlter;
-    }
-}
+//     public void ChangePerson(ref Person person, string neuerName, int neuesAlter)
+//     {
+//         person.Name = neuerName;
+//         person.Alter = neuesAlter;
+//     }
+// }
+// class Program
+// {
+//     static void Main(string[] args)
+//     {
+//         int ersterWert, zweiterWert;
+
+//         GetValues(out ersterWert, out zweiterWert);
+//         Console.WriteLine($"Erster Wert: {ersterWert}, Zweiter Wert: {zweiterWert}");
+
+//         Person ali = new Person();
+//         ali.Name = "Ali";
+//         ali.Alter = 25;
+
+//         Console.WriteLine($"Bevor: Name = {ali.Name}, Alter = {ali.Alter}");
+
+//         ali.ChangePerson(ref ali, "Ramazan", 30);
+
+//         Console.WriteLine($"Danach: Name = {ali.Name}, Alter = {ali.Alter}");
+//     }
+
+//     public static void GetValues(out int wert1, out int wert2)
+//     {
+//         wert1 = 10;
+//         wert2 = 20;
+//     }
+// }
+#endregion
+
+#region Interview-Frage 
 class Program
 {
     static void Main(string[] args)
     {
-        int ersterWert, zweiterWert;
-
-        GetValues(out ersterWert, out zweiterWert);
-        Console.WriteLine($"Erster Wert: {ersterWert}, Zweiter Wert: {zweiterWert}");
-        
-        Person ali = new Person();
-        ali.Name = "Ali";
-        ali.Alter = 25;
-
-        Console.WriteLine($"Bevor: Name = {ali.Name}, Alter = {ali.Alter}");
-
-        ali.ChangePerson(ref ali, "Ramazan", 30);
-
-        Console.WriteLine($"Danach: Name = {ali.Name}, Alter = {ali.Alter}");
-    }
-
-    public static void GetValues(out int wert1, out int wert2)
-    {
-        wert1 = 10;
-        wert2 = 20;
+        int  i=1;
+        int j=1;
+        for(;i<3;i++)
+        {
+            j+=i;
+        }
+        Console.WriteLine("j="+j);
     }
 }
 #endregion
