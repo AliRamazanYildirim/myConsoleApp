@@ -315,17 +315,32 @@
 #endregion
 
 #region Interview-Frage 
+// class Program
+// {
+//     static void Main(string[] args)
+//     {
+//         int  i=1;
+//         int j=1;
+//         for(;i<3;i++)
+//         {
+//             j+=i;
+//         }
+//         Console.WriteLine("j="+j);
+//     }
+// }
 class Program
 {
     static void Main(string[] args)
     {
         int  i=1;
         int j=1;
-        for(;i<3;i++)
+        for(;i<5;i++)
         {
             j+=i;
+            Console.WriteLine("i=" + i + ", j=" + j);
         }
-        Console.WriteLine("j="+j);
+        Console.WriteLine("Final i=" + i + ", Final j=" + j);
     }
 }
+
 #endregion
