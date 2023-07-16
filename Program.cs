@@ -328,19 +328,42 @@
 //         Console.WriteLine("j="+j);
 //     }
 // }
+// class Program
+// {
+//     static void Main(string[] args)
+//     {
+//         int  i=1;
+//         int j=1;
+//         for(;i<5;i++)
+//         {
+//             j+=i;
+//             Console.WriteLine("i=" + i + ", j=" + j);
+//         }
+//         Console.WriteLine("Final i=" + i + ", Final j=" + j);
+//     }
+// }
+
+#endregion
+
+#region Interview-Frage-2
+//Ein Programm, das die eingegebenen Zahlen addiert, bis eine negative Zahl eingegeben wird.
 class Program
 {
     static void Main(string[] args)
     {
-        int  i=1;
-        int j=1;
-        for(;i<5;i++)
+        int zahl = 0, summe = 0;
+        while (true)
         {
-            j+=i;
-            Console.WriteLine("i=" + i + ", j=" + j);
+            Console.WriteLine("Geben Sie eine Zahl ein");
+            zahl = Convert.ToInt32(Console.ReadLine());
+            if (zahl < 0)
+            {
+                break;
+            }
+            summe += zahl;
         }
-        Console.WriteLine("Final i=" + i + ", Final j=" + j);
+        Console.WriteLine("Summe der eingegebenen Zahlen :" + summe);
+        Console.ReadKey();
     }
 }
-
 #endregion
