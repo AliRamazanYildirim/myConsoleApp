@@ -347,22 +347,44 @@
 
 #region Interview-Frage-2
 //Ein Programm, das die eingegebenen Zahlen addiert, bis eine negative Zahl eingegeben wird.
+// class Program
+// {
+//     static void Main(string[] args)
+//     {
+//         int zahl = 0, summe = 0;
+//         while (true)
+//         {
+//             Console.WriteLine("Geben Sie eine Zahl ein");
+//             zahl = Convert.ToInt32(Console.ReadLine());
+//             if (zahl < 0)
+//             {
+//                 break;
+//             }
+//             summe += zahl;
+//         }
+//         Console.WriteLine("Summe der eingegebenen Zahlen :" + summe);
+//         Console.ReadKey();
+//     }
+// }
+#endregion
+
+#region Interview-Frage-3
+// Print fibonacci series
+
 class Program
 {
     static void Main(string[] args)
     {
-        int zahl = 0, summe = 0;
-        while (true)
+        int n1 = 0;
+        int n2 = 1;
+        int n3 = 0;
+        for (int i = 0; i < 10; i++)
         {
-            Console.WriteLine("Geben Sie eine Zahl ein");
-            zahl = Convert.ToInt32(Console.ReadLine());
-            if (zahl < 0)
-            {
-                break;
-            }
-            summe += zahl;
+            Console.WriteLine(n1);
+            n3 = n1 + n2;
+            n1 = n2;
+            n2 = n3;
         }
-        Console.WriteLine("Summe der eingegebenen Zahlen :" + summe);
         Console.ReadKey();
     }
 }
