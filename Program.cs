@@ -371,21 +371,62 @@
 #region Interview-Frage-3
 // Print fibonacci series
 
-class Program
+// class Program
+// {
+//     static void Main(string[] args)
+//     {
+//         int n1 = 0;
+//         int n2 = 1;
+//         int n3 = 0;
+//         for (int i = 0; i < 10; i++)
+//         {
+//             Console.WriteLine(n1);
+//             n3 = n1 + n2;
+//             n1 = n2;
+//             n2 = n3;
+//         }
+//         Console.ReadKey();
+//     }
+// }
+#endregion
+
+#region Interview-Frage-4
+//PrimzahlPrüfung
+
+namespace PrimzahlPrüfung
 {
-    static void Main(string[] args)
+    class Program
     {
-        int n1 = 0;
-        int n2 = 1;
-        int n3 = 0;
-        for (int i = 0; i < 10; i++)
+        static void Main(string[] args)
         {
-            Console.WriteLine(n1);
-            n3 = n1 + n2;
-            n1 = n2;
-            n2 = n3;
+            Console.WriteLine("Geben Sie eine Zahl ein:");
+            int zahl = Convert.ToInt32(Console.ReadLine());
+
+            if (IstPrimzahl(zahl))
+                Console.WriteLine(zahl + " ist eine Primzahl.");
+            else
+                Console.WriteLine(zahl + " ist keine Primzahl.");
         }
-        Console.ReadKey();
+
+        static bool IstPrimzahl(int num)
+        {
+            if (num < 2)
+                return false;
+
+            // Nummer 2 ist die einzige gerade Primzahl.
+            if (num != 2 && num % 2 == 0)
+                return false;
+
+            // Überprüfen Sie alle Zahlen von 3 bis zur Quadratwurzel von Num.
+            for (int i = 3; i <= Math.Sqrt(num); i += 2)
+            {
+                if (num % i == 0)
+                    return false;
+            }
+
+            return true;
+        }
     }
 }
+
 #endregion
