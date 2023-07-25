@@ -393,40 +393,65 @@
 #region Interview-Frage-4
 //PrimzahlPrüfung
 
-namespace PrimzahlPrüfung
+// namespace PrimzahlPrüfung
+// {
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             Console.WriteLine("Geben Sie eine Zahl ein:");
+//             int zahl = Convert.ToInt32(Console.ReadLine());
+
+//             if (IstPrimzahl(zahl))
+//                 Console.WriteLine(zahl + " ist eine Primzahl.");
+//             else
+//                 Console.WriteLine(zahl + " ist keine Primzahl.");
+//         }
+
+//         static bool IstPrimzahl(int num)
+//         {
+//             if (num < 2)
+//                 return false;
+
+//             // Nummer 2 ist die einzige gerade Primzahl.
+//             if (num != 2 && num % 2 == 0)
+//                 return false;
+
+//             // Überprüfen Sie alle Zahlen von 3 bis zur Quadratwurzel von Num.
+//             for (int i = 3; i <= Math.Sqrt(num); i += 2)
+//             {
+//                 if (num % i == 0)
+//                     return false;
+//             }
+
+//             return true;
+//         }
+//     }
+// }
+
+#endregion
+
+#region Interview-Frage-5
+
+namespace Frage
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Geben Sie eine Zahl ein:");
-            int zahl = Convert.ToInt32(Console.ReadLine());
+            string[] fruchte = { "Apfel", "Birne", "Banane", "Kirsche" };
 
-            if (IstPrimzahl(zahl))
-                Console.WriteLine(zahl + " ist eine Primzahl.");
-            else
-                Console.WriteLine(zahl + " ist keine Primzahl.");
-        }
+            // 1. Frucht auf der Konsole ausgeben
+            Console.WriteLine(fruchte[0]);
 
-        static bool IstPrimzahl(int num)
-        {
-            if (num < 2)
-                return false;
+            // Index der Frucht "Banane" im Array ermitteln
+            int index = Array.IndexOf(fruchte, "Banane");
+            Console.WriteLine("Index der Banane im Array: " + index);
 
-            // Nummer 2 ist die einzige gerade Primzahl.
-            if (num != 2 && num % 2 == 0)
-                return false;
-
-            // Überprüfen Sie alle Zahlen von 3 bis zur Quadratwurzel von Num.
-            for (int i = 3; i <= Math.Sqrt(num); i += 2)
-            {
-                if (num % i == 0)
-                    return false;
-            }
-
-            return true;
+            // Größe des Arrays bestimmen
+            int groesse = fruchte.Length;
+            Console.WriteLine("Größe des Arrays: " + groesse);
         }
     }
 }
-
 #endregion
