@@ -457,27 +457,49 @@
 #endregion
 
 #region Interview-Frage-6
+// using System;
+
+// class MainClass 
+// {
+//   public static string FirstReverse(string str) 
+//   {
+//         // code goes here  
+//         char[] charArray = str.ToCharArray();
+//         // Kehrt die Zeichenkette um.
+//         Array.Reverse(charArray);
+//         // Verketten Sie die invertierte Zeichenfolge und geben Sie das Ergebnis zurück
+//         return new string(charArray);
+//   }
+//   static void Main() 
+//   {  
+//     // keep this function call here
+//     Console.WriteLine("Enter a string: ");
+//         string input = Console.ReadLine();
+//         string reversed = FirstReverse(input);
+
+//         Console.WriteLine("Reversed string: " + reversed);   
+//   } 
+// }
+#endregion
+
+#region Interview-Frage-7
 using System;
 
-class MainClass 
-{
-  public static string FirstReverse(string str) 
-  {
-        // code goes here  
-        char[] charArray = str.ToCharArray();
-        // Kehrt die Zeichenkette um.
-        Array.Reverse(charArray);
-        // Verketten Sie die invertierte Zeichenfolge und geben Sie das Ergebnis zurück
-        return new string(charArray);
-  }
-  static void Main() 
-  {  
-    // keep this function call here
-    Console.WriteLine("Enter a string: ");
-        string input = Console.ReadLine();
-        string reversed = FirstReverse(input);
+class MainClass {
+    public static int FirstFactorial(int num) {
+        int factorial = 1;
+        for (int i = num; i > 0; i--) {
+            factorial *= i;
+        }
+        return factorial;
+    }
 
-        Console.WriteLine("Reversed string: " + reversed);   
-  } 
+    static void Main() {  
+        Console.WriteLine("Enter a number: ");
+        int input = Convert.ToInt32(Console.ReadLine());
+        int result = FirstFactorial(input);
+
+        Console.WriteLine("Factorial: " + result);
+    } 
 }
 #endregion
