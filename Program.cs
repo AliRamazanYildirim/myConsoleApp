@@ -433,25 +433,51 @@
 
 #region Interview-Frage-5
 
-namespace Frage
+// namespace Frage
+// {
+//     class Program
+//     {
+//         static void Main()
+//         {
+//             string[] fruchte = { "Apfel", "Birne", "Banane", "Kirsche" };
+
+//             // 1. Frucht auf der Konsole ausgeben
+//             Console.WriteLine(fruchte[0]);
+
+//             // Index der Frucht "Banane" im Array ermitteln
+//             int index = Array.IndexOf(fruchte, "Banane");
+//             Console.WriteLine("Index der Banane im Array: " + index);
+
+//             // Größe des Arrays bestimmen
+//             int groesse = fruchte.Length;
+//             Console.WriteLine("Größe des Arrays: " + groesse);
+//         }
+//     }
+// }
+#endregion
+
+#region Interview-Frage-6
+using System;
+
+class MainClass 
 {
-    class Program
-    {
-        static void Main()
-        {
-            string[] fruchte = { "Apfel", "Birne", "Banane", "Kirsche" };
+  public static string FirstReverse(string str) 
+  {
+        // code goes here  
+        char[] charArray = str.ToCharArray();
+        // Kehrt die Zeichenkette um.
+        Array.Reverse(charArray);
+        // Verketten Sie die invertierte Zeichenfolge und geben Sie das Ergebnis zurück
+        return new string(charArray);
+  }
+  static void Main() 
+  {  
+    // keep this function call here
+    Console.WriteLine("Enter a string: ");
+        string input = Console.ReadLine();
+        string reversed = FirstReverse(input);
 
-            // 1. Frucht auf der Konsole ausgeben
-            Console.WriteLine(fruchte[0]);
-
-            // Index der Frucht "Banane" im Array ermitteln
-            int index = Array.IndexOf(fruchte, "Banane");
-            Console.WriteLine("Index der Banane im Array: " + index);
-
-            // Größe des Arrays bestimmen
-            int groesse = fruchte.Length;
-            Console.WriteLine("Größe des Arrays: " + groesse);
-        }
-    }
+        Console.WriteLine("Reversed string: " + reversed);   
+  } 
 }
 #endregion
