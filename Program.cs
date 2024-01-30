@@ -483,23 +483,34 @@
 #endregion
 
 #region Interview-Frage-7
+// using System;
+
+// class MainClass {
+//     public static int FirstFactorial(int num) {
+//         int factorial = 1;
+//         for (int i = num; i > 0; i--) {
+//             factorial *= i;
+//         }
+//         return factorial;
+//     }
+
+//     static void Main() {  
+//         Console.WriteLine("Enter a number: ");
+//         int input = Convert.ToInt32(Console.ReadLine());
+//         int result = FirstFactorial(input);
+
+//         Console.WriteLine("Factorial: " + result);
+//     } 
+// }
+#endregion
+
+#region Interview-Frage-8
 using System;
 
-class MainClass {
-    public static int FirstFactorial(int num) {
-        int factorial = 1;
-        for (int i = num; i > 0; i--) {
-            factorial *= i;
-        }
-        return factorial;
-    }
-
-    static void Main() {  
-        Console.WriteLine("Enter a number: ");
-        int input = Convert.ToInt32(Console.ReadLine());
-        int result = FirstFactorial(input);
-
-        Console.WriteLine("Factorial: " + result);
-    } 
+static void Main() {
+bool ergebnis=false||true;
+ergebnis |=false;
+ergebnis =! ergebnis;
+ergebnis |=!true;
 }
 #endregion
