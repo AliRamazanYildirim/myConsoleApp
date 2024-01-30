@@ -517,28 +517,33 @@
 
 #region Beispiel-1
 using System;
-
-static void Main()
-{
-    Console.WriteLine("Wie wäre es mit Horror?");
-    bool horror=bool.Parse(Console.ReadLine());
-    if(horror)
-    Console.WriteLine("Gute Wahl wird es heute gruselig :) ");
-    else
-    {
-        Console.WriteLine("Wie wäre ein Actionfilm?");
-        bool action= bool.Parse(Console.ReadLine());
-        if(action)
-        Console.WriteLine("Ein toller Actionfilm ist immer toller.");
-        else
+namespace ConsoleApp
+ {
+     class Program
+     {
+        static void Main(string[] args)
         {
-            Console.WriteLine("Was sagst du für ein Thriller?");
-            bool thriller=bool.Parse(Console.ReadLine());
-            if(thriller)
-            Console.WriteLine("Wow es wird bestimmt spanned");
+            Console.WriteLine("Wie wäre es mit Horror?");
+            bool horror=bool.Parse(Console.ReadLine());
+            if(horror)
+            Console.WriteLine("Gute Wahl wird es heute gruselig :) ");
             else
-            Console.WriteLine("Dann gibt es heute kein Fersehen");
+            {
+                Console.WriteLine("Wie wäre ein Actionfilm?");
+                bool action= bool.Parse(Console.ReadLine());
+                if(action)
+                Console.WriteLine("Ein toller Actionfilm ist immer toller.");
+                else
+                {
+                    Console.WriteLine("Was sagst du für ein Thriller?");
+                    bool thriller=bool.Parse(Console.ReadLine());
+                    if(thriller)
+                    Console.WriteLine("Wow es wird bestimmt spanned");
+                    else
+                    Console.WriteLine("Dann gibt es heute kein Fersehen");
+                }
+            }
         }
-    }
-}
+     }
+ }
 #endregion
