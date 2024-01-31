@@ -506,16 +506,62 @@
 
 #region Interview-Frage-8
 // using System;
+// namespace ConsoleApp
+//  {
+//      class Program
+//      {
+//         static void Main(string[] args)
+//         {
+//             bool ergebnis=false||true;
+//             Console.WriteLine(ergebnis);
 
-// static void Main() {
-// bool ergebnis=false||true;
-// ergebnis |=false;
-// ergebnis =! ergebnis;
-// ergebnis |=!true;
-// }
+//             ergebnis |=false;
+//             Console.WriteLine(ergebnis);
+
+//             ergebnis =! ergebnis;
+//             Console.WriteLine(ergebnis);
+
+//             ergebnis |=!false;
+//             Console.WriteLine(ergebnis);
+//         }
+//      }
+//  }
 #endregion
 
 #region Beispiel-1
+// using System;
+// namespace ConsoleApp
+//  {
+//      class Program
+//      {
+//         static void Main(string[] args)
+//         {
+//             Console.WriteLine("Wie wäre es mit Horror?");
+//             bool horror=bool.Parse(Console.ReadLine());
+//             if(horror)
+//             Console.WriteLine("Gute Wahl wird es heute gruselig :) ");
+//             else
+//             {
+//                 Console.WriteLine("Wie wäre ein Actionfilm?");
+//                 bool action= bool.Parse(Console.ReadLine());
+//                 if(action)
+//                 Console.WriteLine("Ein toller Actionfilm ist immer toller.");
+//                 else
+//                 {
+//                     Console.WriteLine("Was sagst du für ein Thriller?");
+//                     bool thriller=bool.Parse(Console.ReadLine());
+//                     if(thriller)
+//                     Console.WriteLine("Wow es wird bestimmt spanned");
+//                     else
+//                     Console.WriteLine("Dann gibt es heute kein Fersehen");
+//                 }
+//             }
+//         }
+//      }
+//  }
+#endregion
+
+#region Beispiel-2
 using System;
 namespace ConsoleApp
  {
@@ -523,26 +569,10 @@ namespace ConsoleApp
      {
         static void Main(string[] args)
         {
-            Console.WriteLine("Wie wäre es mit Horror?");
-            bool horror=bool.Parse(Console.ReadLine());
-            if(horror)
-            Console.WriteLine("Gute Wahl wird es heute gruselig :) ");
-            else
-            {
-                Console.WriteLine("Wie wäre ein Actionfilm?");
-                bool action= bool.Parse(Console.ReadLine());
-                if(action)
-                Console.WriteLine("Ein toller Actionfilm ist immer toller.");
-                else
-                {
-                    Console.WriteLine("Was sagst du für ein Thriller?");
-                    bool thriller=bool.Parse(Console.ReadLine());
-                    if(thriller)
-                    Console.WriteLine("Wow es wird bestimmt spanned");
-                    else
-                    Console.WriteLine("Dann gibt es heute kein Fersehen");
-                }
-            }
+           string text=null;
+           Console.WriteLine(text.Length);
+           Console.ReadKey();
+            
         }
      }
  }
