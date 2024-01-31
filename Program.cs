@@ -562,6 +562,23 @@
 #endregion
 
 #region Beispiel-2
+// using System;
+// namespace ConsoleApp
+//  {
+//      class Program
+//      {
+//         static void Main(string[] args)
+//         {
+//            string text=null;
+//            Console.WriteLine(text.Length);
+//            Console.ReadKey();
+            
+//         }
+//      }
+//  }
+#endregion
+
+#region Beispiel-3
 using System;
 namespace ConsoleApp
  {
@@ -569,10 +586,12 @@ namespace ConsoleApp
      {
         static void Main(string[] args)
         {
-           string text=null;
-           Console.WriteLine(text.Length);
-           Console.ReadKey();
-            
+           System.Console.WriteLine("Text eingeben");
+           string text=Console.ReadLine();
+           string neuerText="";
+           for(int i=text.Length-1;i>=0;i--)
+           neuerText+=text[i];
+           Console.WriteLine("Der Text rückwaerts:{0}",neuerText);
         }
      }
  }
