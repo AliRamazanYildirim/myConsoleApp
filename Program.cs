@@ -598,44 +598,85 @@
 #endregion
 
 #region Beispiel-4
+// using System;
+
+// namespace ConsoleApp
+// {
+//     class Program
+//     {
+//         static Random rnd = new Random(DateTime.Now.Millisecond);
+//         static void GeneriereSchuhenummern(string[] schuhe, int zeichenAnzahl)
+//         {
+//             for (int i = 0; i < schuhe.Length; i++)
+//             {
+//                 char[] nummer = new char[zeichenAnzahl];
+//                 for (int j = 0; j < zeichenAnzahl; j++)
+//                 {
+//                     nummer[j] = (char)rnd.Next(97, 123);
+//                     schuhe[i] = new String(nummer);
+//                 }
+//             }
+//         }
+//         static void Main(string[] args)
+//         {
+//             int zeichenAnzahl = 7;
+//             String[] ihreSchuhe = new String[10000];
+//             String[] imGeschaeft = new String[1000000];
+//             Console.WriteLine("Generiere Schuhe ...");
+//             GeneriereSchuhenummern(ihreSchuhe, zeichenAnzahl);
+//             GeneriereSchuhenummern(imGeschaeft, zeichenAnzahl);
+//             Console.WriteLine("Suche Übereinstimmungen ...");
+//             DateTime start = DateTime.Now;
+//             List<string> neueSchuhe = new List<string>(imGeschaeft.Length - ihreSchuhe.Length);
+//             HashSet<string> ihreSchuheHashSet = new HashSet<string>();
+//             for (int i = 0; i < ihreSchuhe.Length; i++)
+//                 ihreSchuheHashSet.Add(ihreSchuhe[i]);
+//             for (int i = 0; i < imGeschaeft.Length; i++)
+//                 if (ihreSchuheHashSet.Add(imGeschaeft[i]))
+//                     neueSchuhe.Add(imGeschaeft[i]);
+//             Console.WriteLine("Dauer: {0} ms", DateTime.Now.Subtract(start).TotalMilliseconds);
+//             Console.WriteLine("Deine Freundin kann sich noch weitere {0} Paar Schuhe kaufen", neueSchuhe.Count);
+//         }
+//     }
+// }
+#endregion
+
+#region Beispiel-5
 using System;
 
 namespace ConsoleApp
 {
     class Program
     {
-        static Random rnd = new Random(DateTime.Now.Millisecond);
-        static void GeneriereSchuhenummern(string[] schuhe, int zeichenAnzahl)
-        {
-            for (int i = 0; i < schuhe.Length; i++)
-            {
-                char[] nummer = new char[zeichenAnzahl];
-                for (int j = 0; j < zeichenAnzahl; j++)
-                {
-                    nummer[j] = (char)rnd.Next(97, 123);
-                    schuhe[i] = new String(nummer);
-                }
-            }
-        }
         static void Main(string[] args)
         {
-            int zeichenAnzahl = 7;
-            String[] ihreSchuhe = new String[10000];
-            String[] imGeschaeft = new String[1000000];
-            Console.WriteLine("Generiere Schuhe ...");
-            GeneriereSchuhenummern(ihreSchuhe, zeichenAnzahl);
-            GeneriereSchuhenummern(imGeschaeft, zeichenAnzahl);
-            Console.WriteLine("Suche Übereinstimmungen ...");
-            DateTime start = DateTime.Now;
-            List<string> neueSchuhe = new List<string>(imGeschaeft.Length - ihreSchuhe.Length);
-            HashSet<string> ihreSchuheHashSet = new HashSet<string>();
-            for (int i = 0; i < ihreSchuhe.Length; i++)
-                ihreSchuheHashSet.Add(ihreSchuhe[i]);
-            for (int i = 0; i < imGeschaeft.Length; i++)
-                if (ihreSchuheHashSet.Add(imGeschaeft[i]))
-                    neueSchuhe.Add(imGeschaeft[i]);
-            Console.WriteLine("Dauer: {0} ms", DateTime.Now.Subtract(start).TotalMilliseconds);
-            Console.WriteLine("Deine Freundin kann sich noch weitere {0} Paar Schuhe kaufen", neueSchuhe.Count);
+            Ghost ghost = new Ghost("Casper");
+            ghost.Haunt();
+        }
+
+        class Ghost
+        {
+            public Ghost(string name)
+            {
+                this.Name = name;
+            }
+
+            public string Name { get; set; }
+
+            public virtual void Haunt()
+            {
+                Console.WriteLine("{0} sagt:'Buh'", this.Name);
+            }
+        }
+        class SlimeGhost:Ghost{
+            public SlimeGhost(string name):base(name){}
+            public override void Haunt(){
+                this.Slime();
+                base.Haunt();
+            }
+            public void Slime(){
+                Console.WriteLine("{0} hinterlaesst eine Schleimspur.",this.Name);
+            }
         }
     }
 }
