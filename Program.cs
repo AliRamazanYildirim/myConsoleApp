@@ -642,42 +642,69 @@
 #endregion
 
 #region Beispiel-5
-using System;
+// using System;
 
+// namespace ConsoleApp
+// {
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             Ghost ghost = new Ghost("Casper");
+//             ghost.Haunt();
+//         }
+
+//         class Ghost
+//         {
+//             public Ghost(string name)
+//             {
+//                 this.Name = name;
+//             }
+
+//             public string Name { get; set; }
+
+//             public virtual void Haunt()
+//             {
+//                 Console.WriteLine("{0} sagt:'Buh'", this.Name);
+//             }
+//         }
+//         class SlimeGhost:Ghost{
+//             public SlimeGhost(string name):base(name){}
+//             public override void Haunt(){
+//                 this.Slime();
+//                 base.Haunt();
+//             }
+//             public void Slime(){
+//                 Console.WriteLine("{0} hinterlaesst eine Schleimspur.",this.Name);
+//             }
+//         }
+//     }
+// }
+#endregion
+
+#region Beispiel-6
+using System;
 namespace ConsoleApp
-{
-    class Program
-    {
+ {
+     class Program
+     {
         static void Main(string[] args)
         {
-            Ghost ghost = new Ghost("Casper");
-            ghost.Haunt();
-        }
+           const int num_count=100;
+           int[] numbers=new int[num_count];
+           Random rnd=new Random();
+           for(int i=0;i<numbers.Length;i++)
+           numbers[i]=rnd.Next(0,numbers.Length);
 
-        class Ghost
-        {
-            public Ghost(string name)
-            {
-                this.Name = name;
-            }
-
-            public string Name { get; set; }
-
-            public virtual void Haunt()
-            {
-                Console.WriteLine("{0} sagt:'Buh'", this.Name);
-            }
+           Console.WriteLine("Bitte Zahl zum Suchen eingeben:");
+           int suche=Convert.ToInt32(Console.ReadLine());
+           for(int i=0;i<numbers.Length;i++)
+           if(numbers[i]==suche)
+           {
+                Console.WriteLine("Gefunden! Die Zahl {0} steht an Stelle {1}", suche,i);
+                break;
+           }
         }
-        class SlimeGhost:Ghost{
-            public SlimeGhost(string name):base(name){}
-            public override void Haunt(){
-                this.Slime();
-                base.Haunt();
-            }
-            public void Slime(){
-                Console.WriteLine("{0} hinterlaesst eine Schleimspur.",this.Name);
-            }
-        }
-    }
-}
+     }
+ }
 #endregion
