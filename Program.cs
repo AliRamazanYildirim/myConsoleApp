@@ -683,28 +683,77 @@
 #endregion
 
 #region Beispiel-6
+// using System;
+// namespace ConsoleApp
+//  {
+//      class Program
+//      {
+//         static void Main(string[] args)
+//         {
+//            const int num_count=100;
+//            int[] numbers=new int[num_count];
+//            Random rnd=new Random();
+//            for(int i=0;i<numbers.Length;i++)
+//            numbers[i]=rnd.Next(0,numbers.Length);
+
+//            Console.WriteLine("Bitte Zahl zum Suchen eingeben:");
+//            int suche=Convert.ToInt32(Console.ReadLine());
+//            for(int i=0;i<numbers.Length;i++)
+//            if(numbers[i]==suche)
+//            {
+//                 Console.WriteLine("Gefunden! Die Zahl {0} steht an Stelle {1}", suche,i);
+//                 break;
+//            }
+//         }
+//      }
+//  }
+#endregion
+
+#region Beispiel-7
 using System;
+
 namespace ConsoleApp
- {
-     class Program
-     {
+{
+    abstract class Shape
+    {
+        public int Top { get; set; }
+        public int Left { get; set; }
+        public virtual int Width { get; set; }
+        public virtual int Height { get; set; }
+        public ConsoleColor Color { get; set; }
+
+        public bool IsCollision(Shape s)
+        {
+            return (s.Top < this.Top && s.Top + s.Height > this.Top ||
+                    this.Top < s.Top && this.Top + this.Height > s.Top &&
+                    (s.Left < this.Left && s.Left + s.Width > this.Left ||
+                    this.Left < s.Left && this.Left + this.Width > s.Left));
+        }
+
+        public void DrawShapeBeforeMe(Shape s)
+        {
+            s.Draw();
+            // this.Draw();
+        }
+
+        public abstract void Draw();
+    }
+
+    class MyShape : Shape
+    {
+        public override void Draw()
+        {
+            Console.WriteLine("Drawing MyShape");
+        }
+    }
+
+    class Program
+    {
         static void Main(string[] args)
         {
-           const int num_count=100;
-           int[] numbers=new int[num_count];
-           Random rnd=new Random();
-           for(int i=0;i<numbers.Length;i++)
-           numbers[i]=rnd.Next(0,numbers.Length);
-
-           Console.WriteLine("Bitte Zahl zum Suchen eingeben:");
-           int suche=Convert.ToInt32(Console.ReadLine());
-           for(int i=0;i<numbers.Length;i++)
-           if(numbers[i]==suche)
-           {
-                Console.WriteLine("Gefunden! Die Zahl {0} steht an Stelle {1}", suche,i);
-                break;
-           }
+            MyShape myShape = new MyShape();
+            myShape.DrawShapeBeforeMe(new MyShape());
         }
-     }
- }
+    }
+}
 #endregion
