@@ -710,50 +710,129 @@
 #endregion
 
 #region Beispiel-7
+// using System;
+
+// namespace ConsoleApp
+// {
+//     abstract class Shape
+//     {
+//         public int Top { get; set; }
+//         public int Left { get; set; }
+//         public virtual int Width { get; set; }
+//         public virtual int Height { get; set; }
+//         public ConsoleColor Color { get; set; }
+
+//         public bool IsCollision(Shape s)
+//         {
+//             return (s.Top < this.Top && s.Top + s.Height > this.Top ||
+//                     this.Top < s.Top && this.Top + this.Height > s.Top &&
+//                     (s.Left < this.Left && s.Left + s.Width > this.Left ||
+//                     this.Left < s.Left && this.Left + this.Width > s.Left));
+//         }
+
+//         public void DrawShapeBeforeMe(Shape s)
+//         {
+//             s.Draw();
+//             // this.Draw();
+//         }
+
+//         public abstract void Draw();
+//     }
+
+//     class MyShape : Shape
+//     {
+//         public override void Draw()
+//         {
+//             Console.WriteLine("Drawing MyShape");
+//         }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             MyShape myShape = new MyShape();
+//             myShape.DrawShapeBeforeMe(new MyShape());
+//         }
+//     }
+// }
+#endregion
+
+#region Beispiel-8
 using System;
-
 namespace ConsoleApp
-{
-    abstract class Shape
-    {
-        public int Top { get; set; }
-        public int Left { get; set; }
-        public virtual int Width { get; set; }
-        public virtual int Height { get; set; }
-        public ConsoleColor Color { get; set; }
+ {
+     class Program
+     {
+        static DateTime timer;
+        static Random rnd=new Random(DateTime.Now.Millisecond);
 
-        public bool IsCollision(Shape s)
-        {
-            return (s.Top < this.Top && s.Top + s.Height > this.Top ||
-                    this.Top < s.Top && this.Top + this.Height > s.Top &&
-                    (s.Left < this.Left && s.Left + s.Width > this.Left ||
-                    this.Left < s.Left && this.Left + this.Width > s.Left));
+        static void StartMeasure(string text){
+            Console.WriteLine(text);
+            timer=DateTime.Now;
+        }
+        static void EndMeasure(string text){
+            double seconds=DateTime.Now.Subtract(timer).TotalMilliseconds;
+            Console.WriteLine("{0}: {1} sec",text,seconds);
+            timer=DateTime.Now;
         }
 
-        public void DrawShapeBeforeMe(Shape s)
-        {
-            s.Draw();
-            // this.Draw();
-        }
+        private static void Arrays(int amount, int searchAmount){
 
-        public abstract void Draw();
+        StartMeasure("Array");
+        int[] data=new int[amount];
+        for(int i=0; i<amount; i++)
+            data[i]=rnd.Next(amount);
+            EndMeasure("Array fill");
+
+        for(int i=0;i<searchAmount;i++){
+            int search=rnd.Next(amount);
+            for(int j=0;j<amount;j++)
+            if(data[i]==search)
+            break;
+        }
+        EndMeasure(String.Format("Searched for {0} times", searchAmount));
     }
 
-    class MyShape : Shape
-    {
-        public override void Draw()
-        {
-            Console.WriteLine("Drawing MyShape");
+    private static void Lists(int amount, int searchAmount){
+
+        StartMeasure("List");
+        List<int> list=new List<int>();
+        for(int i=0; i<amount; i++)
+            list.Add(rnd.Next(amount));
+            EndMeasure("List fill");
+
+        for(int i=0;i<searchAmount;i++){
+            int search=rnd.Next(amount);
+            bool contains=list.Contains(search);
         }
+        EndMeasure(String.Format("Searched for {0} times", searchAmount));
     }
 
-    class Program
-    {
+    private static void Dictionaries(int amount, int searchAmount){
+
+        StartMeasure("Dictionary");
+        Dictionary<int,int> list=new Dictionary<int,int>();
+        for(int i=0; i<amount; i++){
+            int val=rnd.Next(amount);
+            if(!list.ContainsKey(val))
+            list.Add(val,val);
+        }
+        EndMeasure("Dictionary fill");
+            
+        for(int i=0;i<searchAmount;i++){
+            int search=rnd.Next(amount);
+            bool contains=list.ContainsKey(search);
+        }
+        EndMeasure(String.Format("Searched for {0} times", searchAmount));
+    }
         static void Main(string[] args)
         {
-            MyShape myShape = new MyShape();
-            myShape.DrawShapeBeforeMe(new MyShape());
+           Arrays(100,10);
+           Lists(100,10);
+           Dictionaries(100,10);
         }
-    }
-}
+     }
+ }
+
 #endregion
