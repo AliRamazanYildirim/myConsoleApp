@@ -37,7 +37,7 @@
 // }
 #endregion
 
-#region Benchmark 
+#region Benchmark
 // public class BenchmarkExample
 // {
 
@@ -67,7 +67,7 @@
 // }
 
 // class Program
-// {    
+// {
 //     static void Main(string[] args)
 //     {
 //         var summary = BenchmarkRunner.Run<BenchmarkExample>();
@@ -314,7 +314,7 @@
 // }
 #endregion
 
-#region Interview-Frage 
+#region Interview-Frage
 // class Program
 // {
 //     static void Main(string[] args)
@@ -459,26 +459,26 @@
 #region Interview-Frage-6
 // using System;
 
-// class MainClass 
+// class MainClass
 // {
-//   public static string FirstReverse(string str) 
+//   public static string FirstReverse(string str)
 //   {
-//         // code goes here  
+//         // code goes here
 //         char[] charArray = str.ToCharArray();
 //         // Kehrt die Zeichenkette um.
 //         Array.Reverse(charArray);
 //         // Verketten Sie die invertierte Zeichenfolge und geben Sie das Ergebnis zurück
 //         return new string(charArray);
 //   }
-//   static void Main() 
-//   {  
+//   static void Main()
+//   {
 //     // keep this function call here
 //     Console.WriteLine("Enter a string: ");
 //         string input = Console.ReadLine();
 //         string reversed = FirstReverse(input);
 
-//         Console.WriteLine("Reversed string: " + reversed);   
-//   } 
+//         Console.WriteLine("Reversed string: " + reversed);
+//   }
 // }
 #endregion
 
@@ -494,13 +494,13 @@
 //         return factorial;
 //     }
 
-//     static void Main() {  
+//     static void Main() {
 //         Console.WriteLine("Enter a number: ");
 //         int input = Convert.ToInt32(Console.ReadLine());
 //         int result = FirstFactorial(input);
 
 //         Console.WriteLine("Factorial: " + result);
-//     } 
+//     }
 // }
 #endregion
 
@@ -572,7 +572,7 @@
 //            string text=null;
 //            Console.WriteLine(text.Length);
 //            Console.ReadKey();
-            
+
 //         }
 //      }
 //  }
@@ -759,80 +759,138 @@
 #endregion
 
 #region Beispiel-8
+// using System;
+
+// namespace ConsoleApp
+// {
+//     class Program
+//     {
+//         static DateTime timer;
+//         static Random rnd = new Random(DateTime.Now.Millisecond);
+
+//         static void StartMeasure(string text)
+//         {
+//             Console.WriteLine(text);
+//             timer = DateTime.Now;
+//         }
+
+//         static void EndMeasure(string text)
+//         {
+//             double seconds = DateTime.Now.Subtract(timer).TotalMilliseconds;
+//             Console.WriteLine("{0}: {1} sec", text, seconds);
+//             timer = DateTime.Now;
+//         }
+
+//         private static void Arrays(int amount, int searchAmount)
+//         {
+//             StartMeasure("Array");
+//             int[] data = new int[amount];
+//             for (int i = 0; i < amount; i++)
+//                 data[i] = rnd.Next(amount);
+//             EndMeasure("Array fill");
+
+//             for (int i = 0; i < searchAmount; i++)
+//             {
+//                 int search = rnd.Next(amount);
+//                 for (int j = 0; j < amount; j++)
+//                     if (data[i] == search)
+//                         break;
+//             }
+//             EndMeasure(String.Format("Searched for {0} times", searchAmount));
+//         }
+
+//         private static void Lists(int amount, int searchAmount)
+//         {
+//             StartMeasure("List");
+//             List<int> list = new List<int>();
+//             for (int i = 0; i < amount; i++)
+//                 list.Add(rnd.Next(amount));
+//             EndMeasure("List fill");
+
+//             for (int i = 0; i < searchAmount; i++)
+//             {
+//                 int search = rnd.Next(amount);
+//                 bool contains = list.Contains(search);
+//             }
+//             EndMeasure(String.Format("Searched for {0} times", searchAmount));
+//         }
+
+//         private static void Dictionaries(int amount, int searchAmount)
+//         {
+//             StartMeasure("Dictionary");
+//             Dictionary<int, int> list = new Dictionary<int, int>();
+//             for (int i = 0; i < amount; i++)
+//             {
+//                 int val = rnd.Next(amount);
+//                 if (!list.ContainsKey(val))
+//                     list.Add(val, val);
+//             }
+//             EndMeasure("Dictionary fill");
+
+//             for (int i = 0; i < searchAmount; i++)
+//             {
+//                 int search = rnd.Next(amount);
+//                 bool contains = list.ContainsKey(search);
+//             }
+//             EndMeasure(String.Format("Searched for {0} times", searchAmount));
+//         }
+
+//         static void Main(string[] args)
+//         {
+//             Arrays(100, 10);
+//             Lists(100, 10);
+//             Dictionaries(100, 10);
+//         }
+//     }
+// }
+
+#endregion
+
+#region Beispiel-9
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace ConsoleApp
- {
-     class Program
-     {
-        static DateTime timer;
-        static Random rnd=new Random(DateTime.Now.Millisecond);
+{
+    class Program
+    {
+        class Speise
+        {
+            public int KiloKalorien { get; }
+            public string Name { get; }
 
-        static void StartMeasure(string text){
-            Console.WriteLine(text);
-            timer=DateTime.Now;
+            public Speise(string name, int kiloKalorien)
+            {
+                Name = name;
+                KiloKalorien = kiloKalorien;
+            }
         }
-        static void EndMeasure(string text){
-            double seconds=DateTime.Now.Subtract(timer).TotalMilliseconds;
-            Console.WriteLine("{0}: {1} sec",text,seconds);
-            timer=DateTime.Now;
-        }
 
-        private static void Arrays(int amount, int searchAmount){
-
-        StartMeasure("Array");
-        int[] data=new int[amount];
-        for(int i=0; i<amount; i++)
-            data[i]=rnd.Next(amount);
-            EndMeasure("Array fill");
-
-        for(int i=0;i<searchAmount;i++){
-            int search=rnd.Next(amount);
-            for(int j=0;j<amount;j++)
-            if(data[i]==search)
-            break;
-        }
-        EndMeasure(String.Format("Searched for {0} times", searchAmount));
-    }
-
-    private static void Lists(int amount, int searchAmount){
-
-        StartMeasure("List");
-        List<int> list=new List<int>();
-        for(int i=0; i<amount; i++)
-            list.Add(rnd.Next(amount));
-            EndMeasure("List fill");
-
-        for(int i=0;i<searchAmount;i++){
-            int search=rnd.Next(amount);
-            bool contains=list.Contains(search);
-        }
-        EndMeasure(String.Format("Searched for {0} times", searchAmount));
-    }
-
-    private static void Dictionaries(int amount, int searchAmount){
-
-        StartMeasure("Dictionary");
-        Dictionary<int,int> list=new Dictionary<int,int>();
-        for(int i=0; i<amount; i++){
-            int val=rnd.Next(amount);
-            if(!list.ContainsKey(val))
-            list.Add(val,val);
-        }
-        EndMeasure("Dictionary fill");
-            
-        for(int i=0;i<searchAmount;i++){
-            int search=rnd.Next(amount);
-            bool contains=list.ContainsKey(search);
-        }
-        EndMeasure(String.Format("Searched for {0} times", searchAmount));
-    }
         static void Main(string[] args)
         {
-           Arrays(100,10);
-           Lists(100,10);
-           Dictionaries(100,10);
-        }
-     }
- }
+            List<Speise> speisen = new List<Speise>
+            {
+                new Speise("Icli Köfte", 250),
+                new Speise("Anali-kizli", 350),
+                new Speise("Karniyarik", 550),
+                new Speise("Kadinbudu köfte", 370),
+                new Speise("Hünkarbegendi", 250)
+            };
 
+            var katSpeisen = from s in speisen
+                             group s by s.KiloKalorien > 300 into gruppe
+                             select gruppe;
+
+            foreach (var gruppe in katSpeisen)
+            {
+                Console.WriteLine(gruppe.Key ? "\nLeckere Speise" : "\nDiaettaugliche Speise");
+                foreach (var speise in gruppe)
+                {
+                    Console.WriteLine("{0} kcal\t{1}", speise.KiloKalorien, speise.Name);
+                }
+            }
+        }
+    }
+}
 #endregion
