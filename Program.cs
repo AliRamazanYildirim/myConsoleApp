@@ -847,48 +847,106 @@
 #endregion
 
 #region Beispiel-9
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
+
+// namespace ConsoleApp
+// {
+//     class Program
+//     {
+//         class Speise
+//         {
+//             public int KiloKalorien { get; }
+//             public string Name { get; }
+
+//             public Speise(string name, int kiloKalorien)
+//             {
+//                 Name = name;
+//                 KiloKalorien = kiloKalorien;
+//             }
+//         }
+
+//         static void Main(string[] args)
+//         {
+//             List<Speise> speisen = new List<Speise>
+//             {
+//                 new Speise("Icli Köfte", 250),
+//                 new Speise("Anali-kizli", 350),
+//                 new Speise("Karniyarik", 550),
+//                 new Speise("Kadinbudu köfte", 370),
+//                 new Speise("Hünkarbegendi", 250)
+//             };
+
+//             var katSpeisen = from s in speisen
+//                              group s by s.KiloKalorien > 300 into gruppe
+//                              select gruppe;
+
+//             foreach (var gruppe in katSpeisen)
+//             {
+//                 Console.WriteLine(gruppe.Key ? "\nLeckere Speise" : "\nDiaettaugliche Speise");
+//                 foreach (var speise in gruppe)
+//                 {
+//                     Console.WriteLine("{0} kcal\t{1}", speise.KiloKalorien, speise.Name);
+//                 }
+//             }
+//         }
+//     }
+// }
+#endregion
+
+#region Beispiel-10
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ConsoleApp
 {
+    class Produkt
+    {
+        public string Name { get; set; }
+        public int KategorieId { get; set; }
+    }
+
+    class Kategorie
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
     class Program
     {
-        class Speise
-        {
-            public int KiloKalorien { get; }
-            public string Name { get; }
-
-            public Speise(string name, int kiloKalorien)
-            {
-                Name = name;
-                KiloKalorien = kiloKalorien;
-            }
-        }
-
         static void Main(string[] args)
         {
-            List<Speise> speisen = new List<Speise>
-            {
-                new Speise("Icli Köfte", 250),
-                new Speise("Anali-kizli", 350),
-                new Speise("Karniyarik", 550),
-                new Speise("Kadinbudu köfte", 370),
-                new Speise("Hünkarbegendi", 250)
+            Produkt[] produkte = new Produkt[]{
+                new Produkt(){Name="Sony Xperia Pro 10",KategorieId=1},
+                new Produkt(){Name="Sony Xperia Pro 9",KategorieId=1},
+                new Produkt(){Name="Schuld und Sühne",KategorieId=2},
+                new Produkt(){Name="Vaeter und Soehne",KategorieId=2},
+                new Produkt(){Name="Adidas Allstar",KategorieId=3},
+                new Produkt(){Name="Nike Airforce",KategorieId=3}
             };
 
-            var katSpeisen = from s in speisen
-                             group s by s.KiloKalorien > 300 into gruppe
-                             select gruppe;
+            Kategorie[] kategorien = new Kategorie[]{
+                new Kategorie(){Id=1,Name="Handy"},
+                new Kategorie(){Id=2,Name="Buch"},
+                new Kategorie(){Id=3,Name="Schuhe"}
+            };
 
-            foreach (var gruppe in katSpeisen)
+            var resultat1 = from p in produkte
+                            join k in kategorien on p.KategorieId equals k.Id
+                            orderby p.Name
+                            select new
+                            {
+                                ProduktName = p.Name,
+                                KategorieName = k.Name,
+                                KategorieId = k.Id
+                            };
+
+            foreach (var item in resultat1)
             {
-                Console.WriteLine(gruppe.Key ? "\nLeckere Speise" : "\nDiaettaugliche Speise");
-                foreach (var speise in gruppe)
-                {
-                    Console.WriteLine("{0} kcal\t{1}", speise.KiloKalorien, speise.Name);
-                }
+                Console.WriteLine("Produkt: {0}; Kategorie: {1} (Id: {2})", 
+                item.ProduktName, item.KategorieName, item.KategorieId);
             }
         }
     }
