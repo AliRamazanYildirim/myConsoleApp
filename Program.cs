@@ -896,58 +896,90 @@
 #endregion
 
 #region Beispiel-10
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
+
+// namespace ConsoleApp
+// {
+//     class Produkt
+//     {
+//         public string? Name { get; set; }
+//         public int KategorieId { get; set; }
+//     }
+
+//     class Kategorie
+//     {
+//         public int Id { get; set; }
+//         public string? Name { get; set; }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             Produkt[] produkte = new Produkt[]{
+//                 new Produkt(){Name="Sony Xperia Pro 10",KategorieId=1},
+//                 new Produkt(){Name="Sony Xperia Pro 9",KategorieId=1},
+//                 new Produkt(){Name="Schuld und Sühne",KategorieId=2},
+//                 new Produkt(){Name="Vaeter und Soehne",KategorieId=2},
+//                 new Produkt(){Name="Adidas Allstar",KategorieId=3},
+//                 new Produkt(){Name="Nike Airforce",KategorieId=3}
+//             };
+
+//             Kategorie[] kategorien = new Kategorie[]{
+//                 new Kategorie(){Id=1,Name="Handy"},
+//                 new Kategorie(){Id=2,Name="Buch"},
+//                 new Kategorie(){Id=3,Name="Schuhe"}
+//             };
+
+//             var resultat1 = from p in produkte
+//                             join k in kategorien on p.KategorieId equals k.Id
+//                             orderby p.Name
+//                             select new
+//                             {
+//                                 ProduktName = p.Name,
+//                                 KategorieName = k.Name,
+//                                 KategorieId = k.Id
+//                             };
+
+//             foreach (var item in resultat1)
+//             {
+//                 Console.WriteLine("Produkt: {0}; Kategorie: {1} (Id: {2})", 
+//                 item.ProduktName, item.KategorieName, item.KategorieId);
+//             }
+//         }
+//     }
+// }
+#endregion
+
+#region Beispiel-11
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace ConsoleApp
-{
-    class Produkt
-    {
-        public string Name { get; set; }
-        public int KategorieId { get; set; }
-    }
+class MatrisCarpma {
 
-    class Kategorie
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+    static void Main(string[] args) {
+        // Matrizen definieren
+        int[,] matris1 = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
+        int[,] matris2 = { {9, 8, 7}, {6, 5, 4}, {3, 2, 1} };
+        int[,] sonucMatris = new int[3, 3];
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Produkt[] produkte = new Produkt[]{
-                new Produkt(){Name="Sony Xperia Pro 10",KategorieId=1},
-                new Produkt(){Name="Sony Xperia Pro 9",KategorieId=1},
-                new Produkt(){Name="Schuld und Sühne",KategorieId=2},
-                new Produkt(){Name="Vaeter und Soehne",KategorieId=2},
-                new Produkt(){Name="Adidas Allstar",KategorieId=3},
-                new Produkt(){Name="Nike Airforce",KategorieId=3}
-            };
-
-            Kategorie[] kategorien = new Kategorie[]{
-                new Kategorie(){Id=1,Name="Handy"},
-                new Kategorie(){Id=2,Name="Buch"},
-                new Kategorie(){Id=3,Name="Schuhe"}
-            };
-
-            var resultat1 = from p in produkte
-                            join k in kategorien on p.KategorieId equals k.Id
-                            orderby p.Name
-                            select new
-                            {
-                                ProduktName = p.Name,
-                                KategorieName = k.Name,
-                                KategorieId = k.Id
-                            };
-
-            foreach (var item in resultat1)
-            {
-                Console.WriteLine("Produkt: {0}; Kategorie: {1} (Id: {2})", 
-                item.ProduktName, item.KategorieName, item.KategorieId);
+        // Matrizen multiplizieren
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < 3; k++) {
+                    sonucMatris[i, j] += matris1[i, k] * matris2[k, j];
+                }
             }
+        }
+
+        // Drucken der Ergebnismatrix
+        Console.WriteLine("Ergebnismatrix:");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Console.Write(sonucMatris[i, j] + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
